@@ -38,4 +38,10 @@ class FireStationController extends Controller
         $fireStation->delete();
         return redirect()->back();
     }
+
+    public function clear()
+    {
+        FireStation::query()->delete();
+        return redirect()->back();
+    }
 }

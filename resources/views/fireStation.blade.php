@@ -1,6 +1,9 @@
 @extends('layout.app')
 @section('content')
     <h1>Liste des casernes de pompiers</h1>
+        @if($fireStations->count() == 0)
+            <p>La liste des casernes est vide... Les casernes que vous ajouterez s'afficheront ici</p>
+        @else
 
         <table class="table">
             <thead>
@@ -11,6 +14,11 @@
                     <td>Province</td>
                     <td>Téléphone</td>
                     <td></td>
+                    <form action="{{ route('clearListFireStation') }}" method="POST" onsubmit="return confirm('Supprimer la liste des casernes ?')">
+                    @csrf
+                    @method('DELETE')
+                        <td><button class="btn" type="submit">Vider la liste</button></td>
+                    </form>
                     
                 </tr>
             </thead>
@@ -27,10 +35,17 @@
                     @method('DELETE')
                         <td><button class="btn" type="submit">Supprimer</button></td>
                     </form>
+                    <form action="{{ route('deleteFireStation', $fs->id) }}" method="POST" onsubmit="return confirm('Supprimer cette caserne ?')">
+                    @csrf
+                    @method('DELETE')
+                        <td><button class="btn" type="submit">Supprimer</button></td>
+                    </form>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+
+        @endif
 
         <h1>Création d'une caserne</h1>
 
