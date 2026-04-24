@@ -11,7 +11,14 @@ class State extends Model
 
     public $timestamps = false;
 
+    protected $table = 'states';
+
     protected $fillable = [
         'description'
     ];
+
+    public function fireStations()
+    {
+        return $this->hasMany(FireStation::class);
+    }
 }

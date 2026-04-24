@@ -11,6 +11,8 @@ class FireStation extends Model
 
     public $timestamps = false;
 
+    protected $table = 'fire_stations';
+
     protected $fillable = [
         'name', 
         'address', 
@@ -18,4 +20,9 @@ class FireStation extends Model
         'phone', 
         'id_state'
     ];
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'id_state');
+    }
 }

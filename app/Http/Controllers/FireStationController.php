@@ -9,6 +9,12 @@ class FireStationController extends Controller
 {
     public function index()
     {
-        return view('fireStation');
+        $fireStations = FireStation::with('state')->orderBy('name')->get();
+
+        return view('fireStation', [
+            'fireStations' => $fireStations
+        ]);
     }
+
+    
 }
