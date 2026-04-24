@@ -8,3 +8,5 @@ Route::get('/FireStations', [FireStationController::class, 'index'])->name('main
 Route::post('/FireStations/add', [FireStationController::class, 'add'])->name('addFireStation');
 Route::delete('/FireStations/{id}/delete', [FireStationController::class, 'delete'])->name('deleteFireStation');
 Route::delete('/FireStations/clear', [FireStationController::class, 'clear'])->name('clearListFireStation');
+Route::get('/FireStation/{id}/edit', [FireStationController::class, 'formModifyFireStation'])->name('formModifyFireStation');
+Route::post('/FireStation/{id}/update', [FireStationController::class, 'update'])->name('modifyFireStation');

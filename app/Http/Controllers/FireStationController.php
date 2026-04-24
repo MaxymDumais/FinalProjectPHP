@@ -32,6 +32,31 @@ class FireStationController extends Controller
         return redirect()->route('mainPage');
     }
 
+    public function formModifyFireStation($id)
+    {
+        $fireStation = FireStation::findOrFail($id);
+        $states = State::orderBy('description')->get();
+
+        return view('fireStationModify', [
+            'fireStation' => $fireStation,
+            'states' => $states
+        ]);
+    }
+    
+    public function update($id, Request $request)
+    {
+        $fireStation = FireStation::findOrFail($id);
+
+        $fireStation->name = $request->name;
+        $fireStation->address = $request->address;
+        $fireStation->city = $request->city;
+        $fireStation->id_state = $request->id_state;
+        $fireStation->phone = $request->phone;
+        $fireStation->save();
+
+        return redirect()->route('mainPage');
+    }
+
     public function delete($id)
     {
         $fireStation = FireStation::findOrFail($id);

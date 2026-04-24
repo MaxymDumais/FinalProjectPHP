@@ -30,10 +30,8 @@
                     <td>{{ $fs->city }}</td>
                     <td>{{ $fs->state->description }}</td>
                     <td>{{ $fs->phone }}</td>
-                    <form action="{{ route('deleteFireStation', $fs->id) }}" method="POST" onsubmit="return confirm('Supprimer cette caserne ?')">
-                    @csrf
-                    @method('DELETE')
-                        <td><button class="btn" type="submit">Supprimer</button></td>
+                    <form action="{{ route('formModifyFireStation', $fs->id) }}" method="GET">
+                        <td><button class="btn" type="submit">Modifier</button></td>
                     </form>
                     <form action="{{ route('deleteFireStation', $fs->id) }}" method="POST" onsubmit="return confirm('Supprimer cette caserne ?')">
                     @csrf
