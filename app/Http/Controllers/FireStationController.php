@@ -31,4 +31,11 @@ class FireStationController extends Controller
 
         return redirect()->route('mainPage');
     }
+
+    public function delete($id)
+    {
+        $fireStation = FireStation::findOrFail($id);
+        $fireStation->delete();
+        return redirect()->back();
+    }
 }

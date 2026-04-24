@@ -10,6 +10,8 @@
                     <td>Ville</td>
                     <td>Province</td>
                     <td>Téléphone</td>
+                    <td></td>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +22,11 @@
                     <td>{{ $fs->city }}</td>
                     <td>{{ $fs->state->description }}</td>
                     <td>{{ $fs->phone }}</td>
+                    <form action="{{ route('deleteFireStation', $fs->id) }}" method="POST" onsubmit="return confirm('Supprimer cette caserne ?')">
+                    @csrf
+                    @method('DELETE')
+                        <td><button class="btn" type="submit">Supprimer</button></td>
+                    </form>
                 </tr>
                 @endforeach
             </tbody>
