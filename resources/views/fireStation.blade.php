@@ -1,13 +1,15 @@
 @extends('layout.app')
 @section('content')
-    <h1>Liste des casernes de pompiers</h1>
+<div class="fireStationList">
+    
         @if($fireStations->count() == 0)
-            <p>La liste des casernes est vide... Les casernes que vous ajouterez s'afficheront ici</p>
+            <h1>Liste des casernes de pompiers (Aucune caserne existante)</h1>
+            <p>Liste des casernes vide... Les casernes que vous ajouterez s'afficheront ici</p>
         @else
-
-        <table class="table">
+        <h1>Liste des casernes de pompiers ({{ $fireStations->count() < 2 ? $fireStations->count() . ' caserne' : $fireStations->count() . ' casernes' }})</h1>
+        <table class="table"> 
             <thead>
-                <tr>
+                <tr class="infoColumn">
                     <td>Nom</td>
                     <td>Adresse</td>
                     <td>Ville</td>
@@ -24,7 +26,7 @@
             </thead>
             <tbody>
                 @foreach($fireStations as $fs)
-                <tr>
+                <tr class="fireStationColumn">
                     <td>{{ $fs->name }}</td>
                     <td>{{ $fs->address }}</td>
                     <td>{{ $fs->city }}</td>
@@ -44,27 +46,30 @@
         </table>
 
         @endif
-
-        <h1>Création d'une caserne</h1>
+</div>
+    
+<div class="formular">
+    <h1>Création d'une caserne</h1>
 
     <form method="post" action="{{ route('addFireStation') }}"">
     @csrf
-        <label for="name">Nom : </label>
-        <input type="text" name="name">
-        <label for="address">Adresse : </label>
-        <input type="text" name="address">
-        <label for="city">Ville : </label>
-        <input type="text" name="city">
-        <label for="id_state">Province : </label>
-        <select name="id_state" id="state">
-            @foreach ($states as $state)
-                <option value="{{ $state->id }}">
-                    {{ $state->description }}
-                </option>
-            @endforeach
-        </select>
-        <label for="phone">Numéro de téléphone : </label>
-        <input type="text" name="phone">
-        <button class="btn" type="submit">Créer</button>
+            <label for="name">Nom : </label>
+            <input type="text" name="name">
+            <label for="address">Adresse : </label>
+            <input type="text" name="address">
+            <label for="city">Ville : </label>
+            <input type="text" name="city">
+            <label for="id_state">Province : </label>
+            <select name="id_state" id="state">
+                @foreach ($states as $state)
+                    <option value="{{ $state->id }}">
+                        {{ $state->description }}
+                    </option>
+                @endforeach
+            </select>
+            <label for="phone">Numéro de téléphone : </label>
+            <input type="text" name="phone">
+            <button class="btn" type="submit">Créer</button>
     </form>
+</div>
 @endsection

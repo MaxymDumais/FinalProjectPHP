@@ -1,7 +1,5 @@
 <ul class="navbar">
-    <hr>
-    <li><a href="">Accueil</a></li>
-    <li><a href="">Créer un article</a></li>
+    <img src="{{ asset('../../pictures/firefighter logo.png') }}" alt="Logo" class="logo">
+    <li><a href="{{ route('mainPage') }}">Liste des casernes</a></li>
     <li><a href="">Page de contact</a></li>
-    <hr>
 </ul>

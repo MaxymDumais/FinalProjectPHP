@@ -1,11 +1,12 @@
 @extends('layout.app')
 @section('content')
+<div class="formular">
     <h1>Modification d'une caserne</h1>
 
     <form method="post" action="{{ route('modifyFireStation', ['id' => $fireStation->id]) }}">
     @csrf
         <label for="name">Nom : </label>
-        <input type="text" name="name" value="{{ $fireStation->name}}">
+        <input type="text" name="name" value="{{ $fireStation->name}}" readonly>
 
         <label for="address">Adresse : </label>
         <input type="text" name="address" value="{{ $fireStation->address}}">
@@ -28,4 +29,5 @@
         <button class="btn" type="submit">Modifier</button>
         <button type="button" class="btn" onclick="window.history.back()">Annuler</button>
     </form>
+</div>
 @endsection
