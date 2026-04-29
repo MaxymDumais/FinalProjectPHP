@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="fireStationList">
+<div class="aList">
     
         @if($fireStations->count() == 0)
             <h1>Liste des casernes de pompiers (Aucune caserne existante)</h1>
@@ -9,7 +9,7 @@
         <h1>Liste des casernes de pompiers ({{ $fireStations->count() < 2 ? $fireStations->count() . ' caserne' : $fireStations->count() . ' casernes' }})</h1>
         <table class="table"> 
             <thead>
-                <tr class="infoColumn">
+                <tr class="aInfoColumn">
                     <td>Nom</td>
                     <td>Adresse</td>
                     <td>Ville</td>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 @foreach($fireStations as $fs)
-                <tr class="fireStationColumn">
+                <tr class="aColumn">
                     <td>{{ $fs->name }}</td>
                     <td>{{ $fs->address }}</td>
                     <td>{{ $fs->city }}</td>

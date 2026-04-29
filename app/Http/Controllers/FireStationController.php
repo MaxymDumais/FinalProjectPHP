@@ -13,7 +13,7 @@ class FireStationController extends Controller
         $fireStations = FireStation::with('state')->orderBy('name')->get();
         $states = State::orderBy('description')->get();
 
-        return view('fireStation', [
+        return view('fireStations', [
             'fireStations' => $fireStations,
             'states' => $states
         ]);
@@ -29,7 +29,7 @@ class FireStationController extends Controller
             'phone' => $request->phone
         ]);
 
-        return redirect()->route('mainPage');
+        return redirect()->route('fireStationsPage');
     }
 
     public function formModifyFireStation($id)
@@ -54,7 +54,7 @@ class FireStationController extends Controller
         $fireStation->phone = $request->phone;
         $fireStation->save();
 
-        return redirect()->route('mainPage');
+        return redirect()->route('fireStationsPage');
     }
 
     public function delete($id)

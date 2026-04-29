@@ -47,11 +47,11 @@ td {
     padding: 10px;
 }
 
-.fireStationColumn td {
+.aColumn td {
     border-bottom: 1px solid #444;
 }
 
-.fireStationColumn:hover {
+.aColumn:hover {
     background-color: #333;
     transition: 0.2s;
 }
@@ -67,23 +67,29 @@ button {
 }
 
 /* Boutons tableau */
-.fireStationColumn td button {
+.aColumn td button {
     width: 100%;
     background-color: #7f0404;
     color: white;
 }
 
-.fireStationColumn td button:hover {
+.aInfoColumn td button {
+    width: 100%;
+    background-color: #7f0404;
+    color: white;
+}
+
+.aColumn td button:hover {
     background-color: #eb4200;
 }
 
-.infoColumn td button {
+.aInfoColumn td button {
     width: 100%;
     background-color: #7f0404;
     color: white;
 }
 
-.infoColumn td button:hover {
+.aInfoColumn td button:hover {
     background-color: #eb4200;
 }
 
@@ -145,15 +151,15 @@ button {
     background-color: #eb4200;
 }
 
-.fireStationList {
+.aList {
     width: 90%;
     margin: 20px auto;
 }
 
-.fireStationList h1{
+.aList h1{
     padding-left: 5%;
 }
 
-.fireStationList p{
+.aList p{
     padding-left: 5%;
 }
