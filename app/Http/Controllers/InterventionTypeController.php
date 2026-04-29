@@ -9,6 +9,9 @@ class InterventionTypeController extends Controller
 {
     public function index()
     {
-        return view('interventionTypes');
+        $interventionTypes = InterventionType::orderBy('interventionNumber')->get();
+        return view('interventionTypes', [
+            'interventionTypes' => $interventionTypes
+        ]);
     }
 }
