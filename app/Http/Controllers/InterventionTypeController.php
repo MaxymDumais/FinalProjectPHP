@@ -23,4 +23,11 @@ class InterventionTypeController extends Controller
         ]);
         return redirect()->route('interventionTypesPage');
     }
+
+    public function delete($id)
+    {
+        $interventionType = InterventionType::findOrFail($id);
+        $interventionType->delete();
+        return redirect()->back();
+    }
 }

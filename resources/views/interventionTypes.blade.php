@@ -21,7 +21,12 @@
                 <td>{{ $it->interventionNumber}}</td>
                 <td>{{ $it->description}}</td>
                 <td><td><button class="btn">Modifier</button></td>
-                <td><td><button class="btn">Supprimer</button></td>
+                <form action="{{ route('deleteInterventionType', $it->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
+                    @csrf
+                    @method('DELETE')
+                    <td><button class="btn">Supprimer</button></td>
+                </form>
+                
             </tr>
             @endforeach
         </tbody>

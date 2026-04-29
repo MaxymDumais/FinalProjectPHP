@@ -19,6 +19,7 @@ Route::post('/FireStation/{id}/update', [FireStationController::class, 'update']
 //Routes for the intervention types
 Route::get('/InterventionTypes', [InterventionTypeController::class, 'index'])->name('interventionTypesPage');
 Route::post('/InterventionTypes/add', [InterventionTypeController::class, 'add'])->name('addInterventionType');
+Route::delete('/InterventionTypes/{id}/delete', [InterventionTypeController::class, 'delete'])->name('deleteInterventionType');
 
 //Routes for the intervention files
 Route::get('/InterventionFiles', [InterventionFileController::class, 'index'])->name('interventionFilesPage');
