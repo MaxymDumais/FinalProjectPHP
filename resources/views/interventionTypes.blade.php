@@ -16,7 +16,7 @@
                     @csrf
                     @method('DELETE')
                         <td><button class="btn" type="submit">Vider la liste</button></td>
-                    </form>
+                </form>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,9 @@
             <tr class="aColumn">
                 <td>{{ $it->interventionNumber}}</td>
                 <td>{{ $it->description}}</td>
-                <td><td><button class="btn">Modifier</button></td>
+                <form action="{{ route('formModifyInterventionType', $it->id) }}" method="GET">
+                        <td><button class="btn" type="submit">Modifier</button></td>
+                    </form>
                 <form action="{{ route('deleteInterventionType', $it->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
                     @csrf
                     @method('DELETE')

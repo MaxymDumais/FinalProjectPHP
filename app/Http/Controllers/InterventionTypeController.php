@@ -24,6 +24,15 @@ class InterventionTypeController extends Controller
         return redirect()->route('interventionTypesPage');
     }
 
+    public function formModifyInterventionType($id)
+    {
+        $interventionType = InterventionType::findOrFail($id);
+
+        return view('interventionTypeModify', [
+            'interventionType' => $interventionType
+        ]);
+    }
+
     public function delete($id)
     {
         $interventionType = InterventionType::findOrFail($id);

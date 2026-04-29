@@ -21,6 +21,7 @@ Route::get('/InterventionTypes', [InterventionTypeController::class, 'index'])->
 Route::post('/InterventionTypes/add', [InterventionTypeController::class, 'add'])->name('addInterventionType');
 Route::delete('/InterventionTypes/{id}/delete', [InterventionTypeController::class, 'delete'])->name('deleteInterventionType');
 Route::delete('/InterventionTypes/clear', [InterventionTypeController::class, 'clear'])->name('clearListInterventionType');
+Route::get('/InterventionTypes/{id}/edit', [InterventionTypeController::class, 'formModifyInterventionType'])->name('formModifyInterventionType');
 
 //Routes for the intervention files
 Route::get('/InterventionFiles', [InterventionFileController::class, 'index'])->name('interventionFilesPage');
