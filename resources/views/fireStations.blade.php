@@ -51,7 +51,7 @@
 <div class="formular">
     <h1>Création d'une caserne</h1>
 
-    <form method="post" action="{{ route('addFireStation') }}"">
+    <form method="post" action="{{ route('addFireStation') }}">
     @csrf
             <label for="name">Nom : </label>
             <input type="text" name="name">

@@ -28,4 +28,16 @@
     </table>
     @endif
 </div>
+
+<div class="formular">
+    <h1>Création d'un type d'intervention</h1>
+    <form method="post" action="{{ route('addInterventionType')}}">
+        @csrf
+                <label for="interventionNumber">Numéro d'intervention : </label>
+                <input type="text" name="interventionNumber">
+                <label for="description">Description : </label>
+                <input type="text" name="description">
+                <button class="btn" type="submit">Créer</button>
+    </form>
+</div>
 @endsection

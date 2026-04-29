@@ -14,4 +14,13 @@ class InterventionTypeController extends Controller
             'interventionTypes' => $interventionTypes
         ]);
     }
+
+    public function add(Request $request)
+    {
+        InterventionType::create([
+            'interventionNumber' => $request->interventionNumber,
+            'description' => $request->description
+        ]);
+        return redirect()->route('interventionTypesPage');
+    }
 }
