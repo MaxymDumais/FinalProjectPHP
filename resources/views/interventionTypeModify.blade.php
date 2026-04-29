@@ -3,7 +3,7 @@
 <div class="formular">
     <h1>Modification d'un type d'intervention</h1>
 
-    <form method="post" action="{{ route('formModifyInterventionType', ['id' => $interventionType->id]) }}">
+    <form method="post" action="{{ route('modifyInterventionType', ['id' => $interventionType->id]) }}">
     @csrf
         <label for="interventionNumber">Numéro d'intervention : </label>
         <input type="text" name="interventionNumber" value="{{ $interventionType->interventionNumber}}" readonly>

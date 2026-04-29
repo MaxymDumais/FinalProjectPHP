@@ -33,6 +33,17 @@ class InterventionTypeController extends Controller
         ]);
     }
 
+    public function update($id, Request $request)
+    {
+        $interventionType = InterventionType::findOrFail($id);
+
+        $interventionType->interventionNumber = $request->interventionNumber;
+        $interventionType->description = $request->description;
+        $interventionType->save();
+
+        return redirect()->route('interventionTypesPage');
+    }
+
     public function delete($id)
     {
         $interventionType = InterventionType::findOrFail($id);
