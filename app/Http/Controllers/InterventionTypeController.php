@@ -30,4 +30,10 @@ class InterventionTypeController extends Controller
         $interventionType->delete();
         return redirect()->back();
     }
+
+    public function clear()
+    {
+        InterventionType::query()->delete();
+        return redirect()->back();
+    }
 }

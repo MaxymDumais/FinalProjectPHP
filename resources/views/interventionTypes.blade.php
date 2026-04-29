@@ -12,7 +12,11 @@
                 <td>Numéro d'intervention</td>
                 <td>description</td>
                 <td></td>
-                <td><button class="btn">Vider la liste</button></td>
+                <form action="{{ route('clearListInterventionType') }}" method="POST" onsubmit="return confirm('Supprimer la liste des types d\'interventions ?')">
+                    @csrf
+                    @method('DELETE')
+                        <td><button class="btn" type="submit">Vider la liste</button></td>
+                    </form>
             </tr>
         </thead>
         <tbody>
