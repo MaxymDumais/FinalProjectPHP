@@ -25,4 +25,4 @@ Route::get('/InterventionTypes/{id}/edit', [InterventionTypeController::class, '
 Route::post('/InterventionTypes/{id}/update', [InterventionTypeController::class, 'update'])->name('modifyInterventionType');
 
 //Routes for the intervention files
-Route::get('/InterventionFiles', [InterventionFileController::class, 'index'])->name('interventionFilesPage');
+Route::get('/FireStations/{idFireStation}/InterventionFiles', [InterventionFileController::class, 'index'])->name('interventionFilesPage');

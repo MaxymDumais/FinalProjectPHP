@@ -8,8 +8,21 @@ use Illuminate\Http\Request;
 
 class InterventionFileController extends Controller
 {
-    public function index()
+    public function index(int $idFireStation)
     {
-        return view('interventionFiles');
+        if ($idFireStation === null) 
+            $idFireStation = FireStation::first()->id;
+
+        $fireStations = FireStation::all();
+
+        $fireStation = FireStation::find($idFireStation);
+
+        $interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->orderBy('dateTimeIntervention')->get();
+
+        return view('interventionFiles', [
+            'interventionFiles' => $interventionFiles,
+            'fireStation' => $fireStation,
+            'fireStations' => $fireStations
+        ]);
     }
 }
