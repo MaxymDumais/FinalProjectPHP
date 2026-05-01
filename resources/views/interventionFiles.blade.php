@@ -4,9 +4,9 @@
 <h1>Sélectionnez une caserne : </h1>   
     <form method="get" action="route('interventionFilesPage', $idFireStation)">
         <select name="idFireStation" id="idFireStation" onchange="window.location.href='{{ url('FireStations') }}/' + this.value + '/InterventionFiles'">
-                @foreach ($fireStations as $fireStation)
-                    <option value="{{ $fireStation->id }}" {{ request('idFireStation') == $fireStation->id ? 'selected' : '' }}>
-                        {{ $fireStation->name}}
+                @foreach ($fireStations as $selectedFireStation)
+                    <option value="{{ $selectedFireStation->id }}" {{ request('idFireStation') == $selectedFireStation->id ? 'selected' : '' }}>
+                        {{ $selectedFireStation->name}}
                     </option>
                 @endforeach
         </select>
@@ -23,8 +23,8 @@
             <tr class="aInfoColumn">
                 <td>Date d'intervention</td>
                 <td>Adresse</td>
-                <td>Résumé</td>
                 <td>Type d'intervention</td>
+                <td>Résumé</td>
                 <td></td>
                 
             </tr>
@@ -34,14 +34,34 @@
             <tr class="aColumn">
                 <td>{{ $if->dateTimeIntervention}}</td>
                 <td>{{ $if->address}}</td>
-                <td>{{ $if->summary}}</td>
                 <td>{{ $if->interventionType->description}}</td>
-                
-                
+                <td>{{ $if->summary}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
     @endif
+</div>
+
+<div class="formular">
+    <h1>Création d'une fiche d'intervention</h1>
+    <form method="post" action="{{ route('addInterventionFile')}}">
+        @csrf
+                <label for="address">Adresse : </label>
+                <input type="text" name="address">
+                <label for="idInterventionType">Type d'intervention : </label>
+                <select name="idInterventionType" id="idInterventionType">
+                @foreach ($interventionTypes as $it)
+                    <option value="{{ $it->id }}">
+                        {{ $it->description }}
+                    </option>
+                @endforeach
+                </select>
+                <label for="summary">Résumé : </label>
+                <input type="text" name="summary">
+                <button class="btn" type="submit">Créer</button>
+
+                <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
+    </form>
 </div>
 @endsection
