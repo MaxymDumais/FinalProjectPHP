@@ -26,7 +26,7 @@
                 <td>Type d'intervention</td>
                 <td>Résumé</td>
                 <td></td>
-                
+                <td><button class="btn" type="submit">Vider la liste</button></td>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +36,12 @@
                 <td>{{ $if->address}}</td>
                 <td>{{ $if->interventionType->description}}</td>
                 <td>{{ $if->summary}}</td>
+                        <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('deleteInterventionFile', $if->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
+                    @csrf
+                    @method('DELETE')
+                    <td><button class="btn">Supprimer</button></td>
+                </form>
             </tr>
             @endforeach
         </tbody>

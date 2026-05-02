@@ -40,4 +40,11 @@ class InterventionFileController extends Controller
         ]);
         return redirect()->route('interventionFilesPage', $request->idFireStation);
     }
+
+    public function delete($id)
+    {
+        $interventionFile = InterventionFile::findOrFail($id);
+        $interventionFile->delete();
+        return redirect()->back();
+    }
 }

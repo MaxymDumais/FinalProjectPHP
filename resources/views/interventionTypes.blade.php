@@ -10,7 +10,7 @@
         <thead>
             <tr class="aInfoColumn">
                 <td>Numéro d'intervention</td>
-                <td>description</td>
+                <td>Description</td>
                 <td></td>
                 <form action="{{ route('clearListInterventionType') }}" method="POST" onsubmit="return confirm('Supprimer la liste des types d\'interventions ?')">
                     @csrf
