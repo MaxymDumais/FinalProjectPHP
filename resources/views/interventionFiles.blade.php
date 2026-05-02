@@ -26,7 +26,11 @@
                 <td>Type d'intervention</td>
                 <td>Résumé</td>
                 <td></td>
-                <td><button class="btn" type="submit">Vider la liste</button></td>
+               <form action="{{ route('clearListInterventionFile', $fireStation->id) }}" method="POST" onsubmit="return confirm('Supprimer la liste des fiches d\'interventions ?')">
+                    @csrf
+                    @method('DELETE')
+                        <td><button class="btn" type="submit">Vider la liste</button></td>
+                </form>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +41,7 @@
                 <td>{{ $if->interventionType->description}}</td>
                 <td>{{ $if->summary}}</td>
                         <td><button class="btn" type="submit">Modifier</button></td>
-                <form action="{{ route('deleteInterventionFile', $if->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
+                <form action="{{ route('deleteInterventionFile', $if->id) }}" method="POST" onsubmit="return confirm('Supprimer cette fiche d\'intervention ?')">
                     @csrf
                     @method('DELETE')
                     <td><button class="btn">Supprimer</button></td>

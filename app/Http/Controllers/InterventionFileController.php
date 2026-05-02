@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class InterventionFileController extends Controller
 {
-    public function index(int $idFireStation)
+    public function index($idFireStation)
     {
         if ($idFireStation === null) 
             $idFireStation = FireStation::first()->id;
@@ -45,6 +45,12 @@ class InterventionFileController extends Controller
     {
         $interventionFile = InterventionFile::findOrFail($id);
         $interventionFile->delete();
+        return redirect()->back();
+    }
+
+    public function clear($idFireStation)
+    {
+        InterventionFile::where('idFireStation', $idFireStation)->delete();
         return redirect()->back();
     }
 }
