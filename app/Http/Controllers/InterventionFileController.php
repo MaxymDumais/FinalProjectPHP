@@ -41,6 +41,17 @@ class InterventionFileController extends Controller
         return redirect()->route('interventionFilesPage', $request->idFireStation);
     }
 
+    public function formModifyInterventionFile($id)
+    {
+    $interventionFile = InterventionFile::findOrFail($id);
+
+    return view('interventionFileModify', [
+        'interventionFile' => $interventionFile,
+        'interventionTypes' => InterventionType::all(),
+        'idFireStation' => $interventionFile->idFireStation
+    ]);
+    }
+
     public function delete($id)
     {
         $interventionFile = InterventionFile::findOrFail($id);

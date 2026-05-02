@@ -29,4 +29,5 @@ Route::get('/FireStations/{idFireStation}/InterventionFiles', [InterventionFileC
 Route::post('/InterventionFiles/add', [InterventionFileController::class, 'add'])->name('addInterventionFile');
 Route::delete('/InterventionFiles/{id}/delete', [InterventionFileController::class, 'delete'])->name('deleteInterventionFile');
 Route::delete('/InterventionFiles/clear/{idFireStation}', [InterventionFileController::class, 'clear'])->name('clearListInterventionFile');
+Route::get('/InterventionFiles/{id}/edit', [InterventionFileController::class, 'formModifyInterventionFile'])->name('formModifyInterventionFile');
 

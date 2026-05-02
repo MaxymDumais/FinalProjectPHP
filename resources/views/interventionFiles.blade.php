@@ -40,7 +40,9 @@
                 <td>{{ $if->address}}</td>
                 <td>{{ $if->interventionType->description}}</td>
                 <td>{{ $if->summary}}</td>
-                        <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('formModifyInterventionFile', [$if->id, $fireStation->id]) }}" method="GET">
+                    <td><button class="btn" type="submit">Modifier</button></td>
+                </form>
                 <form action="{{ route('deleteInterventionFile', $if->id) }}" method="POST" onsubmit="return confirm('Supprimer cette fiche d\'intervention ?')">
                     @csrf
                     @method('DELETE')
