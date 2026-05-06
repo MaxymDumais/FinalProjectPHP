@@ -19,7 +19,13 @@ class GradeController extends Controller
 
     public function add(Request $request)
     {
-        
+        $exists = Grade::where('description', $request->description)->exists();
+        if (!$exists) {
+            Grade::create([
+            'description' => $request->description,
+            ]);
+        }
+        return redirect()->route('gradesPage');
     }
 
     public function delete($id)

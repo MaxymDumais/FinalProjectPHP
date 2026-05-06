@@ -10,7 +10,6 @@
             <thead>
                 <tr class="aInfoColumn">
                     <td>Description</td>
-                    <td></td>
                         <td><button class="btn" type="submit">Vider la liste</button></td>
                 </tr>
             </thead>
@@ -18,12 +17,22 @@
                 @foreach($grades as $g)
                 <tr class="aColumn">
                     <td>{{ $g->description }}</td>
-                        <td><button class="btn" type="submit">Modifier</button></td>
                         <td><button class="btn" type="submit">Supprimer</button></td>
                 </tr>
                 @endforeach
             </tbody>
         </table> 
     @endif
+</div>
+
+<div class="formular">
+    <h1>Création d'un grade</h1>
+
+    <form method="post" action="{{ route('addGrade') }}">
+    @csrf
+            <label for="name">Description : </label>
+            <input type="text" name="description" maxlength="200" required>
+            <button class="btn" type="submit">Créer</button>
+    </form>
 </div>
 @endsection

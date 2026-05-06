@@ -35,4 +35,5 @@ Route::post('/InterventionFiles/{id}/update', [InterventionFileController::class
 
 //Routes for the grades
 Route::get('/Grades', [GradeController::class, 'index'])->name('gradesPage');
+Route::post('/Grades/add', [GradeController::class, 'add'])->name('addGrade');
 
