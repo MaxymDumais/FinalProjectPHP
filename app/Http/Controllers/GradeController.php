@@ -37,6 +37,7 @@ class GradeController extends Controller
 
     public function clear()
     {
-       
+        Grade::query()->delete();
+        return redirect()->back();
     }
 }

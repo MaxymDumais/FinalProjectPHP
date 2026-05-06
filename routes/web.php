@@ -37,4 +37,5 @@ Route::post('/InterventionFiles/{id}/update', [InterventionFileController::class
 Route::get('/Grades', [GradeController::class, 'index'])->name('gradesPage');
 Route::post('/Grades/add', [GradeController::class, 'add'])->name('addGrade');
 Route::delete('/Grades/{id}/delete', [GradeController::class, 'delete'])->name('deleteGrade');
+Route::delete('/Grades/clear', [GradeController::class, 'clear'])->name('clearListGrade');
 

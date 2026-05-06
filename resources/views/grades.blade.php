@@ -10,7 +10,11 @@
             <thead>
                 <tr class="aInfoColumn">
                     <td>Description</td>
+                    <form action="{{ route('clearListGrade') }}" method="POST" onsubmit="return confirm('Supprimer la liste des grades ?')">
+                    @csrf
+                    @method('DELETE')
                         <td><button class="btn" type="submit">Vider la liste</button></td>
+                    </form>
                 </tr>
             </thead>
             <tbody>
