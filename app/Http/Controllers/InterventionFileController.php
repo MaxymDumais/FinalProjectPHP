@@ -52,6 +52,20 @@ class InterventionFileController extends Controller
     ]);
     }
 
+    public function update($id, Request $request)
+    {
+        $interventionFile = InterventionFile::findOrFail($id);
+
+        $interventionFile->dateTimeIntervention = $request->dateTimeIntervention;
+        $interventionFile->address = $request->address;
+        $interventionFile->idInterventionType = $request->idInterventionType;
+        $interventionFile->idFireStation = $request->idFireStation;
+        $interventionFile->summary = $request->summary;        
+        $interventionFile->save();
+
+        return redirect()->route('interventionFilesPage', $request->idFireStation);
+    }
+
     public function delete($id)
     {
         $interventionFile = InterventionFile::findOrFail($id);
