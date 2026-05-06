@@ -29,4 +29,16 @@ class FireFighterController extends Controller
             'fireStations' => $fireStations
         ]);
     }
+
+    public function add(Request $request)
+    {
+        FireFighter::create([
+            'matricule' => $request->matricule,
+            'idGrade' => $request->idGrade,
+            'idFireStation' => $request->idFireStation,
+            'lastName' => $request->lastName,
+            'firstName' => $request->firstName
+        ]);
+        return redirect()->route('fireFightersPage', $request->idFireStation);
+    }
 }

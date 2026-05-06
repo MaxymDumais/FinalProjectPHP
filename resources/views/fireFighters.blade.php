@@ -38,12 +38,36 @@
                 <td>{{ $ff->lastName}}</td>
                 <td>{{ $ff->firstName}}</td>
                 <td>{{ $ff->fireStation->name}}</td>
-                    <td><button class="btn" type="submit">Modifier</button></td>
-                    <td><button class="btn">Supprimer</button></td>
+                <td><button class="btn" type="submit">Modifier</button></td>
+                <td><button class="btn">Supprimer</button></td>
             </tr>
             @endforeach
         </tbody>
     </table>
     @endif
+</div>
+
+<div class="formular">
+    <h1>Ajout d'un pompier</h1>
+    <form method="post" action="{{ route('addFireFighter')}}">
+        @csrf
+                <label for="matricule">Matricule : </label>
+                <input type="text" name="matricule" required>
+                <label for="idGrade">Grade : </label>
+                <select name="idGrade" id="idGrade">
+                @foreach ($grades as $g)
+                    <option value="{{ $g->id }}">
+                        {{ $g->description }}
+                    </option>
+                @endforeach
+                </select>
+                <label for="lastName">Nom : </label>
+                <input type="text" name="lastName">
+                <label for="firstName">Prénom : </label>
+                <input type="text" name="firstName">
+                <button class="btn" type="submit">Créer</button>
+
+                <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
+    </form>
 </div>
 @endsection

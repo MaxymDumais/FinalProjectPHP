@@ -43,5 +43,6 @@ Route::delete('/Grades/clear', [GradeController::class, 'clear'])->name('clearLi
 
 //Routes for the fireFighters
 Route::get('/FireStations/{idFireStation}/FireFighters', [FireFighterController::class, 'index'])->name('fireFightersPage');
+Route::post('/FireFighters/add', [FireFighterController::class, 'add'])->name('addFireFighter');
 
 
