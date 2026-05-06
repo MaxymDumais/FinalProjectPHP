@@ -30,7 +30,9 @@ class GradeController extends Controller
 
     public function delete($id)
     {
-        
+        $grade = Grade::findOrFail($id);
+        $grade->delete();
+        return redirect()->back();
     }
 
     public function clear()

@@ -17,7 +17,11 @@
                 @foreach($grades as $g)
                 <tr class="aColumn">
                     <td>{{ $g->description }}</td>
+                    <form action="{{ route('deleteGrade', $g->id) }}" method="POST" onsubmit="return confirm('Supprimer ce grade ?')">
+                    @csrf
+                    @method('DELETE')
                         <td><button class="btn" type="submit">Supprimer</button></td>
+                    </form>
                 </tr>
                 @endforeach
             </tbody>
