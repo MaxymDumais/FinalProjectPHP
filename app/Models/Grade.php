@@ -17,4 +17,9 @@ class Grade extends Model
         'id', 
         'description' 
     ];
+
+    public function fireFighter()
+    {
+        return $this->hasMany(FireFighter::class);
+    }
 }

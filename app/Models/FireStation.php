@@ -30,4 +30,9 @@ class FireStation extends Model
     {
         return $this->hasMany(InterventionFile::class);
     }
+
+    public function fireFighter()
+    {
+        return $this->hasMany(FireFighter::class);
+    }
 }

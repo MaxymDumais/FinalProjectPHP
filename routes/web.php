@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\FireFighterController;
 use App\Http\Controllers\FireStationController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\InterventionFileController;
 use App\Http\Controllers\InterventionTypeController;
+use App\Models\FireFighter;
 use App\Models\InterventionFile;
 use App\Models\InterventionType;
 use Illuminate\Support\Facades\Route;
@@ -38,4 +40,8 @@ Route::get('/Grades', [GradeController::class, 'index'])->name('gradesPage');
 Route::post('/Grades/add', [GradeController::class, 'add'])->name('addGrade');
 Route::delete('/Grades/{id}/delete', [GradeController::class, 'delete'])->name('deleteGrade');
 Route::delete('/Grades/clear', [GradeController::class, 'clear'])->name('clearListGrade');
+
+//Routes for the fireFighters
+Route::get('/FireStations/{idFireStation}/FireFighters', [FireFighterController::class, 'index'])->name('fireFightersPage');
+
 
