@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FireStationController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\InterventionFileController;
 use App\Http\Controllers\InterventionTypeController;
 use App\Models\InterventionFile;
@@ -31,4 +32,7 @@ Route::delete('/InterventionFiles/{id}/delete', [InterventionFileController::cla
 Route::delete('/InterventionFiles/clear/{idFireStation}', [InterventionFileController::class, 'clear'])->name('clearListInterventionFile');
 Route::get('/InterventionFiles/{id}/edit', [InterventionFileController::class, 'formModifyInterventionFile'])->name('formModifyInterventionFile');
 Route::post('/InterventionFiles/{id}/update', [InterventionFileController::class, 'update'])->name('modifyInterventionFile');
+
+//Routes for the grades
+Route::get('/Grades', [GradeController::class, 'index'])->name('gradesPage');
 
