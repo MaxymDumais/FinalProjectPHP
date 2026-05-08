@@ -5,9 +5,6 @@ use App\Http\Controllers\FireStationController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\InterventionFileController;
 use App\Http\Controllers\InterventionTypeController;
-use App\Models\FireFighter;
-use App\Models\InterventionFile;
-use App\Models\InterventionType;
 use Illuminate\Support\Facades\Route;
 
 //Routes for the fire stations
@@ -44,5 +41,6 @@ Route::delete('/Grades/clear', [GradeController::class, 'clear'])->name('clearLi
 //Routes for the fireFighters
 Route::get('/FireStations/{idFireStation}/FireFighters', [FireFighterController::class, 'index'])->name('fireFightersPage');
 Route::post('/FireFighters/add', [FireFighterController::class, 'add'])->name('addFireFighter');
+Route::delete('/FireFighters/{id}/delete', [FireFighterController::class, 'delete'])->name('deleteFireFighter');
 
 

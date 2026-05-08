@@ -39,7 +39,11 @@
                 <td>{{ $ff->firstName}}</td>
                 <td>{{ $ff->fireStation->name}}</td>
                 <td><button class="btn" type="submit">Modifier</button></td>
-                <td><button class="btn">Supprimer</button></td>
+                <form action="{{ route('deleteFireFighter', $ff->id) }}" method="POST" onsubmit="return confirm('Supprimer ce pompier ?')">
+                    @csrf
+                    @method('DELETE')
+                    <td><button class="btn">Supprimer</button></td>
+                </form>
             </tr>
             @endforeach
         </tbody>

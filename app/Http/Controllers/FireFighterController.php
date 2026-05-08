@@ -32,13 +32,24 @@ class FireFighterController extends Controller
 
     public function add(Request $request)
     {
-        FireFighter::create([
+        $exists = FireFighter::where('matricule', $request->matricule)->exists();
+        if (!$exists) {
+            FireFighter::create([
             'matricule' => $request->matricule,
             'idGrade' => $request->idGrade,
             'idFireStation' => $request->idFireStation,
             'lastName' => $request->lastName,
             'firstName' => $request->firstName
-        ]);
+            ]);
+        }
+        
         return redirect()->route('fireFightersPage', $request->idFireStation);
+    }
+
+    public function delete($id)
+    {
+        $fireFighter = FireFighter::findOrFail($id);
+        $fireFighter->delete();
+        return redirect()->back();
     }
 }
