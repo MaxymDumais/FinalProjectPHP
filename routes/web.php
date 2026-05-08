@@ -43,6 +43,9 @@ Route::get('/FireStations/{idFireStation}/FireFighters', [FireFighterController:
 Route::post('/FireFighters/add', [FireFighterController::class, 'add'])->name('addFireFighter');
 Route::delete('/FireFighters/{id}/delete', [FireFighterController::class, 'delete'])->name('deleteFireFighter');
 Route::delete('/FireFighters/clear/{idFireStation}', [FireFighterController::class, 'clear'])->name('clearListFireFighter');
+Route::get('/FireFighters/{id}/edit', [FireFighterController::class, 'formModifyFireFighter'])->name('formModifyFireFighter');
+Route::post('/FireFighters/{id}/update', [FireFighterController::class, 'update'])->name('modifyFireFighter');
+
 
 
 

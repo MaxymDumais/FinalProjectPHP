@@ -46,6 +46,31 @@ class FireFighterController extends Controller
         return redirect()->route('fireFightersPage', $request->idFireStation);
     }
 
+    public function formModifyFireFighter($id)
+    {
+    $fireFighter = FireFighter::findOrFail($id);
+
+    return view('fireFighterModify', [
+        'fireFighter' => $fireFighter,
+        'grades' => Grade::all(),
+        'idFireStation' => $fireFighter->idFireStation
+    ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $fireFighter = FireFighter::findOrFail($id);
+
+        $fireFighter->matricule = $request->matricule;
+        $fireFighter->idGrade = $request->idGrade;
+        $fireFighter->lastName = $request->lastName;
+        $fireFighter->firstName = $request->firstName;
+        $fireFighter->idFireStation = $request->idFireStation;        
+        $fireFighter->save();
+
+        return redirect()->route('fireFightersPage', $request->idFireStation);
+    }
+
     public function delete($id)
     {
         $fireFighter = FireFighter::findOrFail($id);

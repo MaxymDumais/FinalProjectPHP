@@ -42,7 +42,9 @@
                 <td>{{ $ff->lastName}}</td>
                 <td>{{ $ff->firstName}}</td>
                 <td>{{ $ff->fireStation->name}}</td>
-                <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('formModifyFireFighter', [$ff->id, $fireStation->id]) }}" method="GET">
+                    <td><button class="btn" type="submit">Modifier</button></td>
+                </form>
                 <form action="{{ route('clearListFireFighter', $ff->id) }}" method="POST" onsubmit="return confirm('Supprimer ce pompier ?')">
                     @csrf
                     @method('DELETE')
