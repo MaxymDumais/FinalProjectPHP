@@ -3,7 +3,7 @@
 <div class="aList">
 <h1>Sélectionnez une caserne : </h1>   
     <form method="get" action="route('interventionFilesPage', $idFireStation)">
-        <select name="idFireStation" id="idFireStation" onchange="window.location.href='{{ url('FireStations') }}/' + this.value + '/InterventionFiles'">
+        <select name="idFireStation" onchange="window.location.href='{{ url('FireStations') }}/' + this.value + '/InterventionFiles/{{ $captain->id }}'">
                 @foreach ($fireStations as $selectedFireStation)
                     <option value="{{ $selectedFireStation->id }}" {{ request('idFireStation') == $selectedFireStation->id ? 'selected' : '' }}>
                         {{ $selectedFireStation->name}}
@@ -11,7 +11,21 @@
                 @endforeach
         </select>
     </form>
-</div>    
+</div>  
+<div class="aList">
+<h1>Sélectionnez un capitaine : </h1>   
+    <form method="get" action="route('interventionFilesPage', $idFireStation)">
+        <select name="idCaptain" onchange="window.location.href='{{ url('FireStations') }}/{{ $fireStation->id }}/InterventionFiles/' + this.value">
+                @foreach ($captains as $c)
+                    <option value="{{ $c->id }}" {{ request('idCaptain') == $c->id ? 'selected' : '' }}>
+                        {{ $c->lastName}}
+                    </option>
+                @endforeach
+        </select>
+    </form>
+</div>  
+
+</div>
 <div class="aList">
     @if($interventionFiles->count() == 0)
             <h1>Liste des fiches d'interventions (Aucune fiche d'intervention existante)</h1>
@@ -74,6 +88,7 @@
                 <button class="btn" type="submit">Créer</button>
 
                 <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
+                <input type="hidden" name="idCaptain" value="{{ $captain->id }}">
     </form>
 </div>
 @endsection

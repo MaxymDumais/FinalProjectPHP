@@ -18,7 +18,8 @@ class InterventionFile extends Model
         'address', 
         'idInterventionType', 
         'idFireStation', 
-        'summary'
+        'summary',
+        'idCaptain'
     ];
 
     public function interventionType()
@@ -29,5 +30,10 @@ class InterventionFile extends Model
     public function fireStation()
     {
         return $this->belongsTo(FireStation::class, 'idFireStation');
+    }
+
+    public function captain()
+    {
+        return $this->belongsTo(FireFighter::class, 'idCaptain');
     }
 }

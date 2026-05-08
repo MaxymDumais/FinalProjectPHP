@@ -31,4 +31,9 @@ class FireFighter extends Model
     {
         return $this->belongsTo(FireStation::class, 'idFireStation');
     }
+
+    public function interventionFiles()
+    {
+        return $this->hasMany(FireStation::class);
+    }
 }

@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 use App\Models\InterventionFile;
 use App\Models\FireStation;
 use App\Models\InterventionType;
+use App\Models\FireFighter;
 use Illuminate\Http\Request;
 
 class InterventionFileController extends Controller
 {
-    public function index($idFireStation)
+    public function index($idFireStation, $idCaptain)
     {
         if ($idFireStation === null) 
             $idFireStation = FireStation::first()->id;
+
+        if ($idCaptain === null)
+            $idCaptain = FireFighter::whereHas('grade', function ($query) {$query->where('description', 'Capitaine');})->first()->id;
+
+        $captains = FireFighter::where('idFireStation', $idFireStation)->whereHas('grade', function ($query) {$query->where('description', 'Capitaine');})->get();
+
+        $captain = FireFighter::find($idCaptain);
 
         $fireStations = FireStation::all();
 
@@ -19,13 +27,16 @@ class InterventionFileController extends Controller
 
         $interventionTypes = InterventionType::all();
 
-        $interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->orderBy('dateTimeIntervention')->get();
+$interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->where('idCaptain', $idCaptain)->orderBy('dateTimeIntervention')->get();
+        
 
         return view('interventionFiles', [
             'interventionFiles' => $interventionFiles,
             'interventionTypes' => $interventionTypes,
             'fireStation' => $fireStation,
-            'fireStations' => $fireStations
+            'fireStations' => $fireStations,
+            'captains' => $captains,
+            'captain' => $captain
         ]);
     }
 
@@ -36,9 +47,10 @@ class InterventionFileController extends Controller
             'address' => $request->address,
             'idFireStation' => $request->idFireStation,
             'idInterventionType' => $request->idInterventionType,
-            'summary' => $request->summary
+            'summary' => $request->summary,
+            'idCaptain' => $request->idCaptain
         ]);
-        return redirect()->route('interventionFilesPage', $request->idFireStation);
+        return redirect()->route('interventionFilesPage', [$request->idFireStation, $request->idCaptain]);
     }
 
     public function formModifyInterventionFile($id)
@@ -48,7 +60,8 @@ class InterventionFileController extends Controller
     return view('interventionFileModify', [
         'interventionFile' => $interventionFile,
         'interventionTypes' => InterventionType::all(),
-        'idFireStation' => $interventionFile->idFireStation
+        'idFireStation' => $interventionFile->idFireStation,
+        'idCaptain' => $interventionFile->idCaptain
     ]);
     }
 
@@ -63,7 +76,7 @@ class InterventionFileController extends Controller
         $interventionFile->summary = $request->summary;        
         $interventionFile->save();
 
-        return redirect()->route('interventionFilesPage', $request->idFireStation);
+        return redirect()->route('interventionFilesPage', [$request->idFireStation, $request->idCaptain]);
     }
 
     public function delete($id)

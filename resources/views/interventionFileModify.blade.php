@@ -27,6 +27,7 @@
         <button type="button" class="btn" onclick="window.history.back()">Annuler</button>
 
         <input type="hidden" name="idFireStation" value="{{ $idFireStation }}">
+        <input type="hidden" name="idCaptain" value="{{ $idCaptain }}">
     </form>
 </div>
 @endsection
