@@ -52,4 +52,10 @@ class FireFighterController extends Controller
         $fireFighter->delete();
         return redirect()->back();
     }
+
+    public function clear($idFireStation)
+    {
+        FireFighter::where('idFireStation', $idFireStation)->delete();
+        return redirect()->back();
+    }
 }
