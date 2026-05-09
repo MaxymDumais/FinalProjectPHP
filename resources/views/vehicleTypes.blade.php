@@ -12,7 +12,11 @@
                 <td>Code</td>
                 <td>Description</td>
                 <td></td>
+                <form action="{{ route('clearListVehicleType') }}" method="POST" onsubmit="return confirm('Supprimer la liste des types de véhicules ?')">
+                    @csrf
+                    @method('DELETE')
                         <td><button class="btn" type="submit">Vider la liste</button></td>
+                </form>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +24,12 @@
             <tr class="aColumn">
                 <td>{{ $vt->code}}</td>
                 <td>{{ $vt->description}}</td>
-                        <td><button class="btn" type="submit">Modifier</button></td>
+                <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('deleteVehicleType', $vt->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type de véhicule ?')">
+                    @csrf
+                    @method('DELETE')
                     <td><button class="btn">Supprimer</button></td>
+                </form>
                 
             </tr>
             @endforeach

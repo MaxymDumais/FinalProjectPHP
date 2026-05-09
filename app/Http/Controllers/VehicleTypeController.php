@@ -26,4 +26,17 @@ class VehicleTypeController extends Controller
         }
         return redirect()->route('vehicleTypesPage');
     }
+
+    public function delete($id)
+    {
+        $vehicleType = VehicleType::findOrFail($id);
+        $vehicleType->delete();
+        return redirect()->back();
+    }
+
+    public function clear()
+    {
+        VehicleType::query()->delete();
+        return redirect()->back();
+    }
 }

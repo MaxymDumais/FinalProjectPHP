@@ -50,5 +50,7 @@ Route::post('/FireFighters/{id}/update', [FireFighterController::class, 'update'
 //Routes for the vehicle types
 Route::get('/VehicleTypes', [VehicleTypeController::class, 'index'])->name('vehicleTypesPage');
 Route::post('/VehicleTypes/add', [VehicleTypeController::class, 'add'])->name('addVehicleType');
+Route::delete('/VehicleTypes/{id}/delete', [VehicleTypeController::class, 'delete'])->name('deleteVehicleType');
+Route::delete('/VehicleTypes/clear', [VehicleTypeController::class, 'clear'])->name('clearListVehicleType');
 
 
