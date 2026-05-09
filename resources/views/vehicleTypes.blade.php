@@ -30,5 +30,15 @@
     @endif
 </div>
 
-
+<div class="formular">
+    <h1>Création d'un type de véhicule</h1>
+    <form method="post" action="{{ route('addVehicleType')}}">
+        @csrf
+                <label for="code">Code : </label>
+                <input type="text" name="code">
+                <label for="description">Description : </label>
+                <input type="text" name="description">
+                <button class="btn" type="submit">Créer</button>
+    </form>
+</div>
 @endsection

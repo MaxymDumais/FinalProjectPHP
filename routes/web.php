@@ -49,5 +49,6 @@ Route::post('/FireFighters/{id}/update', [FireFighterController::class, 'update'
 
 //Routes for the vehicle types
 Route::get('/VehicleTypes', [VehicleTypeController::class, 'index'])->name('vehicleTypesPage');
+Route::post('/VehicleTypes/add', [VehicleTypeController::class, 'add'])->name('addVehicleType');
 
 

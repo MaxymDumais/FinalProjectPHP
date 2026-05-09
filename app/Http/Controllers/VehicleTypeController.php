@@ -14,4 +14,16 @@ class VehicleTypeController extends Controller
             'vehicleTypes' => $vehicleTypes
         ]);
     }
+
+    public function add(Request $request)
+    {
+        $exists = VehicleType::where('code', $request->code)->exists();
+        if (!$exists) {
+            VehicleType::create([
+                'code' => $request->code,
+                'description' => $request->description
+            ]);
+        }
+        return redirect()->route('vehicleTypesPage');
+    }
 }
