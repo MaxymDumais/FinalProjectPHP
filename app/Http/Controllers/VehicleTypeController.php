@@ -27,6 +27,26 @@ class VehicleTypeController extends Controller
         return redirect()->route('vehicleTypesPage');
     }
 
+    public function formModifyVehicleType($id)
+    {
+        $vehicleType = VehicleType::findOrFail($id);
+
+        return view('vehicleTypeModify', [
+            'vehicleType' => $vehicleType
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $vehicleType = VehicleType::findOrFail($id);
+
+        $vehicleType->code = $request->code;
+        $vehicleType->description = $request->description;
+        $vehicleType->save();
+
+        return redirect()->route('vehicleTypesPage');
+    }
+
     public function delete($id)
     {
         $vehicleType = VehicleType::findOrFail($id);

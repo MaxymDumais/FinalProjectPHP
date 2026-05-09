@@ -24,7 +24,9 @@
             <tr class="aColumn">
                 <td>{{ $vt->code}}</td>
                 <td>{{ $vt->description}}</td>
-                <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('formModifyVehicleType', $vt->id) }}" method="GET">
+                        <td><button class="btn" type="submit">Modifier</button></td>
+                </form>
                 <form action="{{ route('deleteVehicleType', $vt->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type de véhicule ?')">
                     @csrf
                     @method('DELETE')

@@ -52,5 +52,7 @@ Route::get('/VehicleTypes', [VehicleTypeController::class, 'index'])->name('vehi
 Route::post('/VehicleTypes/add', [VehicleTypeController::class, 'add'])->name('addVehicleType');
 Route::delete('/VehicleTypes/{id}/delete', [VehicleTypeController::class, 'delete'])->name('deleteVehicleType');
 Route::delete('/VehicleTypes/clear', [VehicleTypeController::class, 'clear'])->name('clearListVehicleType');
+Route::get('/VehicleTypes/{id}/edit', [VehicleTypeController::class, 'formModifyVehicleType'])->name('formModifyVehicleType');
+Route::post('/VehicleTypes/{id}/update', [VehicleTypeController::class, 'update'])->name('modifyVehicleType');
 
 

@@ -26,8 +26,8 @@
                 <td>{{ $it->description}}</td>
                 <form action="{{ route('formModifyInterventionType', $it->id) }}" method="GET">
                         <td><button class="btn" type="submit">Modifier</button></td>
-                    </form>
-                <form action="{{ route('deleteInterventionType', $it->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
+                </form>
+                    <form action="{{ route('deleteInterventionType', $it->id) }}" method="POST" onsubmit="return confirm('Supprimer ce type d\'intervention ?')">
                     @csrf
                     @method('DELETE')
                     <td><button class="btn">Supprimer</button></td>
