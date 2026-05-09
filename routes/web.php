@@ -5,6 +5,7 @@ use App\Http\Controllers\FireStationController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\InterventionFileController;
 use App\Http\Controllers\InterventionTypeController;
+use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,4 +56,6 @@ Route::delete('/VehicleTypes/clear', [VehicleTypeController::class, 'clear'])->n
 Route::get('/VehicleTypes/{id}/edit', [VehicleTypeController::class, 'formModifyVehicleType'])->name('formModifyVehicleType');
 Route::post('/VehicleTypes/{id}/update', [VehicleTypeController::class, 'update'])->name('modifyVehicleType');
 
+//Routes for the vehicles
+Route::get('/FireStations/{idFireStation}/Vehicles', [VehicleController::class, 'index'])->name('vehiclesPage');
 
