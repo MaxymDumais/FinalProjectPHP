@@ -35,9 +35,9 @@
             @foreach($vehicles as $v)
             <tr class="aColumn">
                 <td>{{ $v->identificationNumber}}</td>
-                <td>{{ $v->grade->registration}}</td>
+                <td>{{ $v->registration}}</td>
                 <td>{{ $v->startYear}}</td>
-                <td>{{ $v->brandt}}</td>
+                <td>{{ $v->brand}}</td>
                 <td>{{ $v->model}}</td>
                 <td>{{ $v->vehicleType->description}}</td>
                     <td><button class="btn" type="submit">Modifier</button></td>
@@ -47,5 +47,38 @@
         </tbody>
     </table>
     @endif
+</div>
+
+<div class="formular">
+    <h1>Ajout d'un véhicule</h1>
+    <form method="post" action="{{ route('addVehicle')}}">
+        @csrf
+                <label for="identificationNumber">Numéro d'identification : </label>
+                <input type="number" name="identificationNumber" required>
+
+                <label for="registration">Immatriculation : </label>
+                <input type="text" name="registration" maxlength="7" required>
+
+                <label for="startYear">Année de début de service : </label>
+                <input type="number" name="startYear" required>
+
+                <label for="brand">Marque : </label>
+                <input type="text" name="brand" maxlength="100" required>
+
+                <label for="model">Modèle : </label>
+                <input type="text" name="model" maxlength="100" required>
+                
+                <label for="idVehicleType">Type de véhicule : </label>
+                <select name="idVehicleType" id="idVehicleType">
+                @foreach ($vehicleTypes as $vt)
+                    <option value="{{ $vt->id }}">
+                        {{ $vt->description }}
+                    </option>
+                @endforeach
+                </select>
+                <button class="btn" type="submit">Créer</button>
+
+                <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
+    </form>
 </div>
 @endsection

@@ -29,4 +29,22 @@ class VehicleController extends Controller
             'fireStations' => $fireStations
         ]);
     }
+
+    public function add(Request $request)
+    {
+        $exists = Vehicle::where('identificationNumber', $request->identificationNumber)->exists();
+        if (!$exists) {
+            Vehicle::create([
+            'identificationNumber' => $request->identificationNumber,
+            'registration' => $request->registration,
+            'startYear' => $request->startYear,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'idVehicleType' => $request->idVehicleType,
+            'idFireStation' => $request->idFireStation
+            ]);
+        }
+        
+        return redirect()->route('vehiclesPage', $request->idFireStation);
+    }
 }
