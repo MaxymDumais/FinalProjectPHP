@@ -86,7 +86,12 @@
                     </option>
                 @endforeach
                 </select>
+
+                @if($vehicleTypes->count() > 0)
                 <button class="btn" type="submit">Créer</button>
+                @else
+                <label>Besoin d'au moins un type de véhicule pour créer un véhicule</label>
+                @endif
 
                 <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
     </form>

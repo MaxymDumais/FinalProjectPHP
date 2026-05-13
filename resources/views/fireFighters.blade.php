@@ -75,7 +75,12 @@
                 <input type="text" name="lastName">
                 <label for="firstName">Prénom : </label>
                 <input type="text" name="firstName">
+                
+                @if($grades->count() > 0)
                 <button class="btn" type="submit">Créer</button>
+                @else
+                <label>Besoin d'au moins un grade pour créer un pompier</label>
+                @endif
 
                 <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
     </form>

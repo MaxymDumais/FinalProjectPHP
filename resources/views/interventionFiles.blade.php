@@ -85,8 +85,13 @@
                 </select>
                 <label for="summary">Résumé : </label>
                 <input type="text" name="summary">
-                <button class="btn" type="submit">Créer</button>
 
+                @if($captains->count() > 0 && $interventionTypes->count() > 0)
+                <button class="btn" type="submit">Créer</button>
+                @else
+                <label>Besoin d'au moins un capitaine et d'un type d'intervention pour créer une intervention</label>
+                @endif
+                
                 <input type="hidden" name="idFireStation" value="{{ $fireStation->id }}">
                 <input type="hidden" name="idCaptain" value="{{ $captain->id }}">
     </form>

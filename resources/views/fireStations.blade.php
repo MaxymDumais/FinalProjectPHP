@@ -69,7 +69,12 @@
             </select>
             <label for="phone">Numéro de téléphone : </label>
             <input type="text" name="phone">
+
+            @if($states->count() > 0)
             <button class="btn" type="submit">Créer</button>
+            @else
+            <label>Aucune province, veuillez en avoir pour créer des casernes</label>
+            @endif
     </form>
 </div>
 @endsection
