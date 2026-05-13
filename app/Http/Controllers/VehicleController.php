@@ -47,4 +47,17 @@ class VehicleController extends Controller
         
         return redirect()->route('vehiclesPage', $request->idFireStation);
     }
+
+    public function delete($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->delete();
+        return redirect()->back();
+    }
+
+    public function clear($idFireStation)
+    {
+        Vehicle::where('idFireStation', $idFireStation)->delete();
+        return redirect()->back();
+    }
 }

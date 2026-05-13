@@ -27,7 +27,7 @@
                 <td>Prénom</td>
                 <td>Caserne</td>
                 <td></td>
-                <form action="{{ route('clearListFireFighter', $fireStation->id) }}" method="POST" onsubmit="return confirm('Supprimer la liste des fiches d\'interventions ?')">
+                <form action="{{ route('clearListFireFighter', $fireStation->id) }}" method="POST" onsubmit="return confirm('Supprimer la liste des pompiers ?')">
                     @csrf
                     @method('DELETE')
                         <td><button class="btn" type="submit">Vider la liste</button></td>
@@ -45,7 +45,7 @@
                 <form action="{{ route('formModifyFireFighter', [$ff->id, $fireStation->id]) }}" method="GET">
                     <td><button class="btn" type="submit">Modifier</button></td>
                 </form>
-                <form action="{{ route('clearListFireFighter', $ff->id) }}" method="POST" onsubmit="return confirm('Supprimer ce pompier ?')">
+                <form action="{{ route('deleteFireFighter', $ff->id) }}" method="POST" onsubmit="return confirm('Supprimer ce pompier ?')">
                     @csrf
                     @method('DELETE')
                     <td><button class="btn">Supprimer</button></td>

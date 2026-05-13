@@ -59,4 +59,5 @@ Route::post('/VehicleTypes/{id}/update', [VehicleTypeController::class, 'update'
 //Routes for the vehicles
 Route::get('/FireStations/{idFireStation}/Vehicles', [VehicleController::class, 'index'])->name('vehiclesPage');
 Route::post('/Vehicles/add', [VehicleController::class, 'add'])->name('addVehicle');
-
+Route::delete('/Vehicles/{id}/delete', [VehicleController::class, 'delete'])->name('deleteVehicle');
+Route::delete('/Vehicles/clear/{idFireStation}', [VehicleController::class, 'clear'])->name('clearListVehicle');

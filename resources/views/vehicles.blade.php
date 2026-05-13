@@ -28,7 +28,11 @@
                 <td>Modèle</td>
                 <td>Type de véhicule</td>
                 <td></td>
+                <form action="{{ route('clearListVehicle', $fireStation->id) }}" method="POST" onsubmit="return confirm('Supprimer la liste des véhicules ?')">
+                    @csrf
+                    @method('DELETE')
                         <td><button class="btn" type="submit">Vider la liste</button></td>
+                </form>
             </tr>
         </thead>
         <tbody>
@@ -41,7 +45,11 @@
                 <td>{{ $v->model}}</td>
                 <td>{{ $v->vehicleType->description}}</td>
                     <td><button class="btn" type="submit">Modifier</button></td>
+                <form action="{{ route('deleteVehicle', $v->id) }}" method="POST" onsubmit="return confirm('Supprimer ce véhicule ?')">
+                    @csrf
+                    @method('DELETE')
                     <td><button class="btn">Supprimer</button></td>
+                </form>
             </tr>
             @endforeach
         </tbody>
