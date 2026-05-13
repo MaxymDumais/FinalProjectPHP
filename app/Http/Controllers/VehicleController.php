@@ -48,6 +48,33 @@ class VehicleController extends Controller
         return redirect()->route('vehiclesPage', $request->idFireStation);
     }
 
+    public function formModifyVehicle($id)
+    {
+    $vehicle = Vehicle::findOrFail($id);
+
+    return view('vehicleModify', [
+        'vehicle' => $vehicle,
+        'vehicleTypes' => VehicleType::all(),
+        'idFireStation' => $vehicle->idFireStation
+    ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        $vehicle->identificationNumber = $request->identificationNumber;
+        $vehicle->registration = $request->registration;
+        $vehicle->startYear = $request->startYear;
+        $vehicle->brand = $request->brand;
+        $vehicle->model = $request->model;
+        $vehicle->idVehicleType = $request->idVehicleType; 
+        $vehicle->idFireStation = $request->idFireStation;        
+        $vehicle->save();
+
+        return redirect()->route('vehiclesPage', $request->idFireStation);
+    }
+
     public function delete($id)
     {
         $vehicle = Vehicle::findOrFail($id);

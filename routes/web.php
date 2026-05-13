@@ -61,3 +61,5 @@ Route::get('/FireStations/{idFireStation}/Vehicles', [VehicleController::class, 
 Route::post('/Vehicles/add', [VehicleController::class, 'add'])->name('addVehicle');
 Route::delete('/Vehicles/{id}/delete', [VehicleController::class, 'delete'])->name('deleteVehicle');
 Route::delete('/Vehicles/clear/{idFireStation}', [VehicleController::class, 'clear'])->name('clearListVehicle');
+Route::get('/Vehicles/{id}/edit', [VehicleController::class, 'formModifyVehicle'])->name('formModifyVehicle');
+Route::post('/Vehicles/{id}/update', [VehicleController::class, 'update'])->name('modifyVehicle');
