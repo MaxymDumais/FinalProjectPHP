@@ -1,25 +1,27 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-
+ 
 use App\Models\Vehicle;
 use App\Models\FireStation;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
-
+ 
+// Controller for the Vehicles
 class VehicleController extends Controller
 {
+    //Function to access to the main page of the vehicles
     public function index($idFireStation)
     {
         if ($idFireStation === null) 
             $idFireStation = FireStation::first()->id;
-
+ 
         $fireStations = FireStation::all();
-
+ 
         $fireStation = FireStation::find($idFireStation);
-
+ 
         $vehicleTypes = VehicleType::all();
-
+ 
         $vehicles = Vehicle::where('idFireStation', $idFireStation)->orderBy('identificationNumber')->get();
     
         return view('vehicles', [
@@ -29,7 +31,8 @@ class VehicleController extends Controller
             'fireStations' => $fireStations
         ]);
     }
-
+ 
+    //Function used to add a vehicle to the list
     public function add(Request $request)
     {
         $exists = Vehicle::where('identificationNumber', $request->identificationNumber)->exists();
@@ -47,22 +50,24 @@ class VehicleController extends Controller
         
         return redirect()->route('vehiclesPage', $request->idFireStation);
     }
-
+ 
+    //Function used to access to the formular for update a specific vehicle
     public function formModifyVehicle($id)
     {
     $vehicle = Vehicle::findOrFail($id);
-
+ 
     return view('vehicleModify', [
         'vehicle' => $vehicle,
         'vehicleTypes' => VehicleType::all(),
         'idFireStation' => $vehicle->idFireStation
     ]);
     }
-
+ 
+    //Function used to update a specific vehicle
     public function update($id, Request $request)
     {
         $vehicle = Vehicle::findOrFail($id);
-
+ 
         $vehicle->identificationNumber = $request->identificationNumber;
         $vehicle->registration = $request->registration;
         $vehicle->startYear = $request->startYear;
@@ -71,17 +76,19 @@ class VehicleController extends Controller
         $vehicle->idVehicleType = $request->idVehicleType; 
         $vehicle->idFireStation = $request->idFireStation;        
         $vehicle->save();
-
+ 
         return redirect()->route('vehiclesPage', $request->idFireStation);
     }
-
+ 
+    //Function used to delete a specific vehicle
     public function delete($id)
     {
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->delete();
         return redirect()->back();
     }
-
+ 
+    //Function used to clear the vehicles of a fire station
     public function clear($idFireStation)
     {
         Vehicle::where('idFireStation', $idFireStation)->delete();

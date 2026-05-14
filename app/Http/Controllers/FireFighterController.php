@@ -8,8 +8,10 @@ use App\Models\FireStation;
 use App\Models\InterventionFile;
 use Illuminate\Http\Request;
 
+// Controller for the FireFighters
 class FireFighterController extends Controller
 {
+    //Function to access to the main page of the fireFighters
     public function index($idFireStation)
     {
         if ($idFireStation === null) 
@@ -31,6 +33,7 @@ class FireFighterController extends Controller
         ]);
     }
 
+    //Function used to add a fireFighter to the list
     public function add(Request $request)
     {
         $exists = FireFighter::where('matricule', $request->matricule)->exists();
@@ -47,6 +50,7 @@ class FireFighterController extends Controller
         return redirect()->route('fireFightersPage', $request->idFireStation);
     }
 
+    //Function used to access to the formular for update a specific fireFighter
     public function formModifyFireFighter($id)
     {
     $fireFighter = FireFighter::findOrFail($id);
@@ -58,12 +62,25 @@ class FireFighterController extends Controller
     ]);
     }
 
+    //Function used to update a specific fireFighter
+    //If the fireFighter is a captain and some interventions are linked to him, the modification of the grade of the fireFighter will not be allowed
     public function update($id, Request $request)
     {
         $fireFighter = FireFighter::findOrFail($id);
 
+        $interventionFiles = InterventionFile::all();
+
+        $isUsed = false;
+
         $fireFighter->matricule = $request->matricule;
-        $fireFighter->idGrade = $request->idGrade;
+        foreach ($interventionFiles as $if) {
+            if ($if->idCaptain == $fireFighter->id)
+                $isUsed = true;
+        }
+        if (!$isUsed)
+            $fireFighter->idGrade = $request->idGrade;
+        else
+            $fireFighter->idGrade = $fireFighter->idGrade;
         $fireFighter->lastName = $request->lastName;
         $fireFighter->firstName = $request->firstName;
         $fireFighter->idFireStation = $request->idFireStation;        
@@ -72,6 +89,8 @@ class FireFighterController extends Controller
         return redirect()->route('fireFightersPage', $request->idFireStation);
     }
 
+    //Function used to delete a specific fireFighter
+    //The firefighter will not be deleted if he's linked to an intervention
     public function delete($id)
     {
         $fireFighter = FireFighter::findOrFail($id);
@@ -92,6 +111,8 @@ class FireFighterController extends Controller
         return redirect()->back();
     }
 
+    //Function used to clear the firefighters of an fire station
+    //The clear list will not work if a firefighter of the list is linked to an intervention
     public function clear($idFireStation)
     {
         $interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->get();
