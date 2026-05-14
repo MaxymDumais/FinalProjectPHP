@@ -27,7 +27,7 @@ class InterventionFileController extends Controller
 
         $interventionTypes = InterventionType::all();
 
-$interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->where('idCaptain', $idCaptain)->orderBy('dateTimeIntervention')->get();
+        $interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->where('idCaptain', $idCaptain)->orderBy('dateTimeIntervention')->get();
         
 
         return view('interventionFiles', [

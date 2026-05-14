@@ -73,6 +73,12 @@ button {
     color: white;
 }
 
+.btn-disabled {
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
 .aInfoColumn td button {
     width: 100%;
     background-color: #7f0404;

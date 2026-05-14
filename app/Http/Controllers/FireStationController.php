@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FireFighter;
 use App\Models\FireStation;
+use App\Models\InterventionFile;
 use App\Models\State;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class FireStationController extends Controller
@@ -60,12 +63,48 @@ class FireStationController extends Controller
     public function delete($id)
     {
         $fireStation = FireStation::findOrFail($id);
-        $fireStation->delete();
+
+        $interventionFiles = InterventionFile::all();
+
+        $fireFighters = FireFighter::all();
+
+        $vehicles = Vehicle::all();
+
+        $isUsed = false;
+
+        foreach ($interventionFiles as $if)
+        {
+            if ($if->idFireStation == $fireStation->id)
+                $isUsed = true;
+        }
+        
+        foreach ($fireFighters as $ff)
+        {
+            if ($ff->idFireStation == $fireStation->id)
+                $isUsed = true;
+        }
+
+        foreach ($vehicles as $v)
+        {
+            if ($v->idFireStation == $fireStation->id)
+                $isUsed = true;
+        }
+        
+        if (!$isUsed)
+            $fireStation->delete();
+
         return redirect()->back();
     }
 
     public function clear()
     {
+        $interventionFiles = InterventionFile::all();
+
+        $fireFighters = FireFighter::all();
+
+        $vehicles = Vehicle::all();
+    
+        if ($vehicles->count() == 0 && $fireFighters->count() == 0 && $interventionFiles->count() == 0)
         FireStation::query()->delete();
         return redirect()->back();
     }

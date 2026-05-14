@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InterventionFile;
 use App\Models\InterventionType;
 use Illuminate\Http\Request;
 
@@ -47,13 +48,29 @@ class InterventionTypeController extends Controller
     public function delete($id)
     {
         $interventionType = InterventionType::findOrFail($id);
-        $interventionType->delete();
+
+        $interventionFiles = InterventionFile::all();
+
+        $isUsed = false;
+
+        foreach ($interventionFiles as $if)
+        {
+            if ($if->idInterventionType == $interventionType->id)
+                $isUsed = true;
+        }
+
+        if (!$isUsed)
+            $interventionType->delete();
+        
         return redirect()->back();
     }
 
     public function clear()
     {
-        InterventionType::query()->delete();
+        $interventionFiles = InterventionFile::all();
+
+        if ($interventionFiles->count() == 0)
+            InterventionType::query()->delete();
         return redirect()->back();
     }
 }

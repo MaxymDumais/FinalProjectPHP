@@ -18,7 +18,7 @@
         <select name="idCaptain" onchange="window.location.href='{{ url('FireStations') }}/{{ $fireStation->id }}/InterventionFiles/' + this.value">
                 @foreach ($captains as $c)
                     <option value="{{ $c->id }}" {{ request('idCaptain') == $c->id ? 'selected' : '' }}>
-                        {{ $c->lastName}}
+                        {{ $c->firstName . ' ' . $c->lastName}}
                     </option>
                 @endforeach
         </select>

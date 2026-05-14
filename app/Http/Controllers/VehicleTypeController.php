@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class VehicleTypeController extends Controller
     public function index()
     {
         $vehicleTypes = VehicleType::orderBy('code')->get();
+
         return view('vehicleTypes', [
             'vehicleTypes' => $vehicleTypes
         ]);
@@ -50,13 +52,30 @@ class VehicleTypeController extends Controller
     public function delete($id)
     {
         $vehicleType = VehicleType::findOrFail($id);
-        $vehicleType->delete();
+
+        $vehicles = Vehicle::all();
+
+        $isUsed = false;
+
+        foreach ($vehicles as $v)
+        {
+            if ($v->vehicleType->id == $vehicleType->id)
+                $isUsed = true;
+        }
+
+        if (!$isUsed)
+            $vehicleType->delete();
+
         return redirect()->back();
     }
 
     public function clear()
     {
-        VehicleType::query()->delete();
+        $vehicles = Vehicle::all();
+
+        if ($vehicles->count() == 0)
+            VehicleType::query()->delete();
+
         return redirect()->back();
     }
 }

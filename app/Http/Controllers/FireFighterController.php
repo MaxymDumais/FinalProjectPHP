@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FireFighter;
 use App\Models\Grade;
 use App\Models\FireStation;
+use App\Models\InterventionFile;
 use Illuminate\Http\Request;
 
 class FireFighterController extends Controller
@@ -74,13 +75,43 @@ class FireFighterController extends Controller
     public function delete($id)
     {
         $fireFighter = FireFighter::findOrFail($id);
-        $fireFighter->delete();
+
+        $interventionFiles = InterventionFile::all();
+
+        $isUsed = false;
+
+        foreach ($interventionFiles as $if)
+        {
+            if ($if->idCaptain == $fireFighter->id)
+                $isUsed = true;
+        }
+
+        if (!$isUsed)
+            $fireFighter->delete();
+        
         return redirect()->back();
     }
 
     public function clear($idFireStation)
     {
-        FireFighter::where('idFireStation', $idFireStation)->delete();
+        $interventionFiles = InterventionFile::where('idFireStation', $idFireStation)->get();
+
+        $fireFighters = FireFighter::where('idFireStation', $idFireStation)->get();
+
+        $isUsed = false;
+
+        foreach ($interventionFiles as $if)
+        {
+            foreach ($fireFighters as $ff)
+            {
+                if ($ff->id == $if->idCaptain)
+                    $isUsed = true;
+            }
+        }
+
+        if (!$isUsed)
+            FireFighter::where('idFireStation', $idFireStation)->delete();
+        
         return redirect()->back();
     }
 }
