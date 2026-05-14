@@ -12,5 +12,4 @@
     <li><a href="{{ route('gradesPage') }}">Liste des grades</a></li>
     <li><a href="{{$firstFireStationId ? route('vehiclesPage', $firstFireStationId) : '#' }}">Liste des véhicules</a></li>
     <li><a href="{{ route('vehicleTypesPage') }}">Liste des types de véhicules</a></li>
-
 </ul>
