@@ -62,7 +62,8 @@
     <form method="post" action="{{ route('addFireFighter')}}">
         @csrf
                 <label for="matricule">Matricule : </label>
-                <input type="text" name="matricule" required>
+                <input type="number" name="matricule" required>
+
                 <label for="idGrade">Grade : </label>
                 <select name="idGrade" id="idGrade">
                 @foreach ($grades as $g)
@@ -71,10 +72,12 @@
                     </option>
                 @endforeach
                 </select>
+
                 <label for="lastName">Nom : </label>
-                <input type="text" name="lastName">
+                <input type="text" name="lastName" maxlength="50" required>
+
                 <label for="firstName">Prénom : </label>
-                <input type="text" name="firstName">
+                <input type="text" name="firstName" maxlength="50" required>
                 
                 @if($grades->count() > 0)
                 <button class="btn" type="submit">Créer</button>

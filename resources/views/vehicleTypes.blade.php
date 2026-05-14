@@ -45,9 +45,11 @@
     <form method="post" action="{{ route('addVehicleType')}}">
         @csrf
                 <label for="code">Code : </label>
-                <input type="text" name="code">
+                <input type="number" name="code" required>
+                
                 <label for="description">Description : </label>
-                <input type="text" name="description">
+                <input type="text" name="description" maxlength="100" required>
+
                 <button class="btn" type="submit">Créer</button>
     </form>
 </div>

@@ -18,10 +18,10 @@
         </select>
 
         <label for="lastName">Nom : </label>
-        <input type="text" name="lastName" value="{{ $fireFighter->lastName}}">
+        <input type="text" name="lastName" value="{{ $fireFighter->lastName}}" maxlength="50" required>
 
         <label for="firstName">Prénom : </label>
-        <input type="text" name="firstName" value="{{ $fireFighter->firstName}}">
+        <input type="text" name="firstName" value="{{ $fireFighter->firstName}}" maxlength="50" required>
 
         
         <button class="btn" type="submit">Modifier</button>

@@ -9,7 +9,7 @@
         <input type="text" name="dateTimeIntervention" value="{{ $interventionFile->dateTimeIntervention}}" readonly>
 
         <label for="address">Adresse : </label>
-        <input type="text" name="address" value="{{ $interventionFile->address}}">
+        <input type="text" name="address" maxlength="200" value="{{ $interventionFile->address}}" required>
 
         <label for="idInterventionType">Type d'intervention : </label>
         <select name="idInterventionType" id="idInterventionType">
@@ -21,7 +21,7 @@
         </select>
 
         <label for="summary">Résumé : </label>
-        <input type="text" name="summary" value="{{ $interventionFile->summary}}">
+        <input type="text" name="summary" value="{{ $interventionFile->summary}}" required>
 
         <button class="btn" type="submit">Modifier</button>
         <button type="button" class="btn" onclick="window.history.back()">Annuler</button>

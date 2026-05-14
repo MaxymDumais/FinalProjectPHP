@@ -74,7 +74,7 @@
     <form method="post" action="{{ route('addInterventionFile')}}">
         @csrf
                 <label for="address">Adresse : </label>
-                <input type="text" name="address">
+                <input type="text" name="address" maxlength="200" required>
                 <label for="idInterventionType">Type d'intervention : </label>
                 <select name="idInterventionType" id="idInterventionType">
                 @foreach ($interventionTypes as $it)
@@ -84,7 +84,7 @@
                 @endforeach
                 </select>
                 <label for="summary">Résumé : </label>
-                <input type="text" name="summary">
+                <input type="text" name="summary" required>
 
                 @if($captains->count() > 0 && $interventionTypes->count() > 0)
                 <button class="btn" type="submit">Créer</button>

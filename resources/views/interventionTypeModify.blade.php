@@ -9,7 +9,7 @@
         <input type="text" name="interventionNumber" value="{{ $interventionType->interventionNumber}}" readonly>
 
         <label for="description">Description : </label>
-        <input type="text" name="description" value="{{ $interventionType->description}}">
+        <input type="text" name="description" value="{{ $interventionType->description}}" maxlength="200" required>
 
         <button class="btn" type="submit">Modifier</button>
         <button type="button" class="btn" onclick="window.history.back()">Annuler</button>

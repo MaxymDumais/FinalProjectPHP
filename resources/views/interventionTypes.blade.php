@@ -45,9 +45,9 @@
     <form method="post" action="{{ route('addInterventionType')}}">
         @csrf
                 <label for="interventionNumber">Numéro d'intervention : </label>
-                <input type="text" name="interventionNumber">
+                <input type="number" name="interventionNumber" required>
                 <label for="description">Description : </label>
-                <input type="text" name="description">
+                <input type="text" name="description" maxlength="200" required>
                 <button class="btn" type="submit">Créer</button>
     </form>
 </div>

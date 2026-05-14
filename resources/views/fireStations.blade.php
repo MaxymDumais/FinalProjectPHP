@@ -54,11 +54,11 @@
     <form method="post" action="{{ route('addFireStation') }}">
     @csrf
             <label for="name">Nom : </label>
-            <input type="text" name="name">
+            <input type="text" name="name" maxlength="100" required>
             <label for="address">Adresse : </label>
-            <input type="text" name="address">
+            <input type="text" name="address" maxlength="200" required>
             <label for="city">Ville : </label>
-            <input type="text" name="city">
+            <input type="text" name="city" maxlength="100">
             <label for="id_state">Province : </label>
             <select name="id_state" id="state">
                 @foreach ($states as $state)
@@ -68,7 +68,7 @@
                 @endforeach
             </select>
             <label for="phone">Numéro de téléphone : </label>
-            <input type="text" name="phone">
+            <input type="text" name="phone" maxlength="12" required>
 
             @if($states->count() > 0)
             <button class="btn" type="submit">Créer</button>

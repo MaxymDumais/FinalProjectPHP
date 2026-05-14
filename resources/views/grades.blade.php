@@ -40,6 +40,7 @@
     @csrf
             <label for="name">Description : </label>
             <input type="text" name="description" maxlength="200" required>
+            
             <button class="btn" type="submit">Créer</button>
     </form>
 </div>
